@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'address' => $this->faker->address(),
             'phone_number' => $this->faker->phoneNumber(),
+            'photo' => 'avatar/' . strtolower(substr($this->faker->name(), 0, 1)) . '.png',
             'id_region' => $this->faker->numberBetween(1, 20),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),

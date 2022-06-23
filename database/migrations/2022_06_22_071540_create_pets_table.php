@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->fulltext();
+            $table->string('photo')->fulltext();
             $table->foreignId('id_familia')->nullable()->constrained('familias')->onDelete('set null');
             $table->foreignId('id_donor')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('id_owner')->nullable()->constrained('users')->onDelete('set null');

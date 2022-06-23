@@ -19,6 +19,7 @@ class PetFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
+            'photo' => 'avatar/' . strtolower(substr($this->faker->name(), 0, 1)) . '.png',
             'id_familia' => 1,
             'id_donor' => $this->faker->numberBetween(1, 20),
             'id_owner' => $this->faker->numberBetween(1, 20),
