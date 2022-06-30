@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Livewire\Users;
+namespace App\Http\Livewire\Regions;
 
-use App\Models\User;
 use App\Models\Region;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -21,16 +20,15 @@ class Index extends Component
     ];
 
     // Membuat listener untuk emit yang dibuat di komponen lain
-    protected $listeners = ['userAdded', 'closeForm', 'userEdited'];
+    protected $listeners = ['regionAdded', 'closeForm', 'regionEdited'];
 
     public function render()
     {
-        return view('livewire.users.index', [
-            'users' => $this->search
-                ? User::where('name', 'like', '%' . $this->search . '%')
+        return view('livewire.regions.index', [
+            'regions' => $this->search
+                ? Region::where('name', 'like', '%' . $this->search . '%')
                 ->latest()->paginate($this->paginate)
-                : User::latest()->paginate($this->paginate),
-            'regions' => Region::all(),
+                : Region::latest()->paginate($this->paginate)
         ]);
     }
 
@@ -41,9 +39,9 @@ class Index extends Component
     }
 
     // Untuk menampilkan notifikasi dari emit yang dikirim dari komponen create
-    public function userAdded()
+    public function regionAdded()
     {
-        session()->flash('message', 'User added successfully');
+        session()->flash('message', 'Region added successfully');
         // Tutup form
         $this->closeForm();
     }
@@ -55,37 +53,31 @@ class Index extends Component
     }
 
     // Untuk menghapus data
-    public function destroy(User $user)
+    public function destroy(Region $region)
     {
-        $user->delete();
+        $region->delete();
 
         // Untuk menghapus foto siswa di penyimpanan jika foto tersebut hasil upload
-        if (preg_match('/upload/', $user->photo)) {
-            Storage::delete($user->photo);
+        if (preg_match('/upload/', $region->photo)) {
+            Storage::delete($region->photo);
         }
 
         // Untuk memberi notifikasi
-        session()->flash('message', 'User deleted successfully');
+        session()->flash('message', 'Region deleted successfully');
     }
 
-    public function detail(User $user, Region $regions)
-    {
-        $this->formVisible = 'detail';
-        // Untuk mengirim data user yang di klik ke komponen lain (komponen edit)
-        $this->emit('userDetail', $user, $regions);
-    }
     // Untuk menampilkan form edit
-    public function edit(User $user, Region $regions)
+    public function edit(Region $region)
     {
         $this->formVisible = 'edit';
-        // Untuk mengirim data user yang di klik ke komponen lain (komponen edit)
-        $this->emit('userEdit', $user, $regions);
+        // Untuk mengirim data region yang di klik ke komponen lain (komponen edit)
+        $this->emit('regionEdit', $region);
     }
 
     // Untuk menampilkan notifikasi dari emit yang dikirim dari komponen edit
-    public function userEdited()
+    public function regionEdited()
     {
-        session()->flash('message', 'User edited successfully');
+        session()->flash('message', 'Region edited successfully');
         // Tutup form
         $this->closeForm();
     }

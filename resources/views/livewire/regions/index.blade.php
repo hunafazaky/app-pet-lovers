@@ -1,11 +1,11 @@
 <div class="container px-8 mx-auto my-10">
     <div class="space-y-4">
-        <h1 class="text-2xl font-black text-gray-800">Simple CRUD Laravel + Livewire</h1>
+        <h1 class="text-xl font-bold text-gray-800">REGION LIST</h1>
         @if ($formVisible)
         @if ($formVisible === 'edit')
-        <livewire:students.edit />
+        <livewire:regions.edit />
         @else
-        <livewire:students.create />
+        <livewire:regions.create />
         @endif
         @else
         <button wire:click="create" class="btn btn-primary">New</button>
@@ -36,28 +36,18 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Photo</th>
-                        <th>NIS</th>
                         <th>Name</th>
-                        <th>Handle</th>
+                        <th class="text-center">Handle</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($students as $student)
+                    @forelse ($regions as $region)
                     <tr>
                         <th class="align-baseline">{{ $loop->iteration }}</th>
-                        <td>
-                            <div class="avatar">
-                                <div class="w-12 h-12 mask mask-hexagon">
-                                    <img class="w-full h-full object-cover" src='{{ asset("storage/{$student->photo}") }}'>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-baseline">{{ $student->nis }}</td>
-                        <td class="align-baseline">{{ $student->name }}</td>
-                        <td class="align-baseline">
-                            <button wire:click="edit({{ $student->id }})" class="btn btn-sm btn-warning">Edit</button>
-                            <button wire:click="destroy({{ $student->id }})" class="btn btn-sm btn-error">Delete</button>
+                        <td class="align-baseline">{{ $region->name }}</td>
+                        <td class="align-baseline mx-auto text-center">
+                            <button wire:click="edit({{ $region->id }})" class="btn btn-sm btn-warning my-2">Edit</button>
+                            <button wire:click="destroy({{ $region->id }})" class="btn btn-sm btn-error my-2">Delete</button>
                         </td>
                     </tr>
                     @empty
@@ -68,6 +58,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $students->links() }}
+        {{ $regions->links() }}
     </div>
 </div>

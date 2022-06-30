@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Edit extends Component
+class Detail extends Component
 {
     // Ini akan digunakan untuk mengupload gambar dan untuk preview gambar
     use WithFileUploads;
@@ -16,17 +16,17 @@ class Edit extends Component
     public $userId, $name, $address, $email, $phone_number, $id_region, $photo, $photoOld;
 
     // Untuk mengambil emit yang dikirim dari komponen index
-    protected $listeners = ['userEdit'];
+    protected $listeners = ['userDetail'];
 
     public function render()
     {
-        return view('livewire.users.edit', [
+        return view('livewire.users.detail', [
             'regions' => Region::all(),
         ]);
     }
 
     // Untuk handle emit dari komponen index
-    public function userEdit($user)
+    public function userDetail($user)
     {
         // Isi properti yang sudah dideklarasikan sebelumnya menggunakan data dari emit
         $this->userId = $user['id'];
@@ -72,6 +72,6 @@ class Edit extends Component
         ]);
 
         // Emit untuk trigger notifikasi
-        $this->emit('userEdited');
+        $this->emit('userDetailed');
     }
 }

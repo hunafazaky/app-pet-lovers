@@ -1,5 +1,16 @@
  <form wire:submit.prevent='update({{ $userId }})' class="space-y-4" action="">
      <div class="grid grid-cols-2 gap-2">
+         <!-- <div class="form-control">
+             <label class="label">
+                 <span class="label-text">NIS</span>
+             </label>
+             <input wire:model="nis" type="number" placeholder="NIS" class="input @error('nis') input-error @enderror input-bordered">
+             @error('nis')
+             <label class="label">
+                 <span class="label-text-alt">{{ $message }}</span>
+             </label>
+             @enderror
+         </div> -->
          <div class="form-control">
              <label class="label">
                  <span class="label-text">Name</span>
@@ -13,49 +24,17 @@
          </div>
          <div class="form-control">
              <label class="label">
-                 <span class="label-text">Email</span>
-             </label>
-             <input wire:model="email" type="text" placeholder="Email" class="input @error('email') input-error @enderror input-bordered">
-             @error('email')
-             <label class="label">
-                 <span class="label-text-alt">{{ $message }}</span>
-             </label>
-             @enderror
-         </div>
-         <div class="form-control">
-             <label class="label">
-                 <span class="label-text">Address</span>
-             </label>
-             <input wire:model="address" type="text" placeholder="Address" class="input @error('address') input-error @enderror input-bordered">
-             @error('address')
-             <label class="label">
-                 <span class="label-text-alt">{{ $message }}</span>
-             </label>
-             @enderror
-         </div>
-         <div class="form-control">
-             <label class="label">
                  <span class="label-text">Region</span>
              </label>
-             <select name="id_region" wire:model="id_region" class="input @error('id_region') input-error @enderror input-bordered">
+             <!-- <select class="input @error('id_region') input-error @enderror input-bordered">
                  @forelse($regions as $region)
-                 <option value="{{$region->id}}" <?= $region->id == $id_region ? 'selected' : '' ?>>{{$region->name}}</option>
+                 <option value="{{$region->id}}">{{$region->name}}</option>
                  @empty
                  <option>Not Found</option>
                  @endforelse
-             </select>
+             </select> -->
+             <input wire:model="id_region" type="text" placeholder="Region" class="input @error('id_region') input-error @enderror input-bordered">
              @error('id_region')
-             <label class="label">
-                 <span class="label-text-alt">{{ $message }}</span>
-             </label>
-             @enderror
-         </div>
-         <div class="form-control">
-             <label class="label">
-                 <span class="label-text">Phone Number</span>
-             </label>
-             <input wire:model="phone_number" type="text" placeholder="Phone Number" class="input @error('phone_number') input-error @enderror input-bordered">
-             @error('phone_number')
              <label class="label">
                  <span class="label-text-alt">{{ $message }}</span>
              </label>

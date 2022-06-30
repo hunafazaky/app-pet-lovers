@@ -1,8 +1,10 @@
-<div class="max-w-3xl mx-auto my-10">
+<div class="container px-8 mx-auto my-10">
     <div class="space-y-4">
-        <h1 class="text-2xl font-black text-gray-800">Simple CRUD Laravel + Livewire</h1>
+        <h1 class="text-xl font-bold text-gray-800">USER LIST</h1>
         @if ($formVisible)
-        @if ($formVisible === 'edit')
+        @if ($formVisible === 'detail')
+        <livewire:users.detail />
+        @elseif ($formVisible === 'edit')
         <livewire:users.edit />
         @else
         <livewire:users.create />
@@ -36,12 +38,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Photo</th>
+                        <th class="text-center">Photo</th>
                         <th>Name</th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
                         <th>Region</th>
-                        <th>Handle</th>
+                        <th class="text-center">Handle</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,12 +56,17 @@
                             </div>
                         </td>
                         <td class="align-baseline">{{ $user->name }}</td>
-                        <td class="align-baseline">{{ $user->address }}</td>
-                        <td class="align-baseline">{{ $user->phone_number }}</td>
-                        <td class="align-baseline">{{ $user->id_region }}</td>
                         <td class="align-baseline">
-                            <button wire:click="edit({{ $user->id }})" class="btn btn-warning">Edit</button>
-                            <button wire:click="destroy({{ $user->id }})" class="btn btn-error">Delete</button>
+                            @foreach ($regions as $region)
+                            @if ($region->id == $user->id_region)
+                            {{$region->name}}
+                            @endif
+                            @endforeach
+                        </td>
+                        <td class="align-baseline mx-auto text-center">
+                            <button wire:click="detail({{ $user->id }})" class="btn btn-sm btn-success my-2">Detail</button>
+                            <button wire:click="edit({{ $user->id }})" class="btn btn-sm btn-warning my-2">Edit</button>
+                            <button wire:click="destroy({{ $user->id }})" class="btn btn-sm btn-error my-2">Delete</button>
                         </td>
                     </tr>
                     @empty
