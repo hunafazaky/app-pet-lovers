@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', App\Http\Livewire\Students\Index::class);
+Route::get('/', App\Http\Livewire\Home\Index::class);
 Route::get('/users', App\Http\Livewire\Users\Index::class);
+Route::get('/pets', App\Http\Livewire\Pets\Index::class);
 Route::get('/regions', App\Http\Livewire\Regions\Index::class);
+Route::get('/familias', App\Http\Livewire\Familias\Index::class);

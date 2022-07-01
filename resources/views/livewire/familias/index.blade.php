@@ -1,13 +1,11 @@
 <div class="container px-8 mx-auto my-10">
     <div class="space-y-4">
-        <h1 class="text-xl font-bold text-gray-800">USER LIST</h1>
+        <h1 class="text-xl font-bold text-gray-800">FAMILIA LIST</h1>
         @if ($formVisible)
-        @if ($formVisible === 'detail')
-        <livewire:users.detail />
-        @elseif ($formVisible === 'edit')
-        <livewire:users.edit />
+        @if ($formVisible === 'edit')
+        <livewire:familias.edit />
         @else
-        <livewire:users.create />
+        <livewire:familias.create />
         @endif
         @else
         <button wire:click="create" class="btn btn-primary">New</button>
@@ -38,35 +36,18 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th></th>
                         <th>Name</th>
-                        <th>Region</th>
                         <th class="text-center">Handle</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($users as $user)
+                    @forelse ($familias as $familia)
                     <tr>
                         <th class="align-baseline">{{ $loop->iteration }}</th>
-                        <td>
-                            <div class="avatar">
-                                <div class="w-12 h-12 mask mask-hexagon">
-                                    <img class="w-full h-full object-cover" src='{{ asset("storage/{$user->photo}") }}'>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-baseline">{{ $user->name }}</td>
-                        <td class="align-baseline">
-                            @foreach ($regions as $region)
-                            @if ($region->id == $user->id_region)
-                            {{$region->name}}
-                            @endif
-                            @endforeach
-                        </td>
+                        <td class="align-baseline">{{ $familia->name }}</td>
                         <td class="align-baseline mx-auto text-center">
-                            <button wire:click="detail({{ $user->id }})" class="btn btn-sm btn-success my-2">Detail</button>
-                            <button wire:click="edit({{ $user->id }})" class="btn btn-sm btn-warning my-2">Edit</button>
-                            <button wire:click="destroy({{ $user->id }})" class="btn btn-sm btn-error my-2">Delete</button>
+                            <button wire:click="edit({{ $familia->id }})" class="btn btn-sm btn-warning my-2">Edit</button>
+                            <button wire:click="destroy({{ $familia->id }})" class="btn btn-sm btn-error my-2">Delete</button>
                         </td>
                     </tr>
                     @empty
@@ -77,6 +58,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $users->links() }}
+        {{ $familias->links() }}
     </div>
 </div>

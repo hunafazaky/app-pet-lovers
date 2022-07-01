@@ -1,13 +1,13 @@
 <div class="container px-8 mx-auto my-10">
     <div class="space-y-4">
-        <h1 class="text-xl font-bold text-gray-800">USER LIST</h1>
+        <h1 class="text-xl font-bold text-gray-800">PET LIST</h1>
         @if ($formVisible)
         @if ($formVisible === 'detail')
-        <livewire:users.detail />
+        <livewire:pets.detail />
         @elseif ($formVisible === 'edit')
-        <livewire:users.edit />
+        <livewire:pets.edit />
         @else
-        <livewire:users.create />
+        <livewire:pets.create />
         @endif
         @else
         <button wire:click="create" class="btn btn-primary">New</button>
@@ -40,33 +40,41 @@
                         <th>#</th>
                         <th></th>
                         <th>Name</th>
-                        <th>Region</th>
+                        <th>Familia</th>
+                        <th>Owner</th>
                         <th class="text-center">Handle</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($users as $user)
+                    @forelse ($pets as $pet)
                     <tr>
                         <th class="align-baseline">{{ $loop->iteration }}</th>
                         <td>
                             <div class="avatar">
                                 <div class="w-12 h-12 mask mask-hexagon">
-                                    <img class="w-full h-full object-cover" src='{{ asset("storage/{$user->photo}") }}'>
+                                    <img class="w-full h-full object-cover" src='{{ asset("storage/{$pet->photo}") }}'>
                                 </div>
                             </div>
                         </td>
-                        <td class="align-baseline">{{ $user->name }}</td>
+                        <td class="align-baseline">{{ $pet->name }}</td>
                         <td class="align-baseline">
-                            @foreach ($regions as $region)
-                            @if ($region->id == $user->id_region)
-                            {{$region->name}}
+                            @foreach ($familias as $familia)
+                            @if ($familia->id == $pet->id_familia)
+                            {{$familia->name}}
+                            @endif
+                            @endforeach
+                        </td>
+                        <td class="align-baseline">
+                            @foreach ($users as $user)
+                            @if ($user->id == $pet->id_owner)
+                            {{$user->name}}
                             @endif
                             @endforeach
                         </td>
                         <td class="align-baseline mx-auto text-center">
-                            <button wire:click="detail({{ $user->id }})" class="btn btn-sm btn-success my-2">Detail</button>
-                            <button wire:click="edit({{ $user->id }})" class="btn btn-sm btn-warning my-2">Edit</button>
-                            <button wire:click="destroy({{ $user->id }})" class="btn btn-sm btn-error my-2">Delete</button>
+                            <button wire:click="detail({{ $pet->id }})" class="btn btn-sm btn-success my-2">Detail</button>
+                            <button wire:click="edit({{ $pet->id }})" class="btn btn-sm btn-warning my-2">Edit</button>
+                            <button wire:click="destroy({{ $pet->id }})" class="btn btn-sm btn-error my-2">Delete</button>
                         </td>
                     </tr>
                     @empty
@@ -77,6 +85,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $users->links() }}
+        {{ $pets->links() }}
     </div>
 </div>
