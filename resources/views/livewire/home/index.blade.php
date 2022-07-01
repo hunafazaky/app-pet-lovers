@@ -5,21 +5,21 @@
     <hr class="my-6">
     <div class="space-y-6">
         <div class="grid grid-cols-3 gap-6">
-            <a href="/pets" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-red-900 dark:border-gray-700 dark:hover:bg-gray-700">
+            <a href="/pets" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-error dark:border-gray-700 dark:hover:bg-gray-700">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pet List</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Kumpulan hewan yang berasal dari donasi para pencinta hewan, dan dipelihara oleh orang yang mencintai hewan</p>
+                <p class="font-normal text-gray-700 dark:text-gray-200">Kumpulan hewan yang berasal dari donasi para pencinta hewan, dan dipelihara oleh orang yang mencintai hewan</p>
             </a>
-            <a href="/users" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-yellow-900 dark:border-gray-700 dark:hover:bg-gray-700">
+            <a href="/users" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-warning dark:border-gray-700 dark:hover:bg-gray-700">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">User List</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Kumpulan orang-orang yang mencintai hewan, bersukarela untuk mendonasikan hewan dan memelihara hewan</p>
+                <p class="font-normal text-gray-700 dark:text-gray-200">Kumpulan orang-orang yang mencintai hewan, bersukarela untuk mendonasikan hewan dan memelihara hewan</p>
             </a>
-            <a href="/regions" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-green-900 dark:border-gray-700 dark:hover:bg-gray-700">
+            <a href="/regions" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-success dark:border-gray-700 dark:hover:bg-gray-700">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Region List</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Kumpulan data kota dari para pencinta hewan untuk mempermudah mapping wilayah</p>
+                <p class="font-normal text-gray-700 dark:text-gray-200">Kumpulan data kota dari para pencinta hewan untuk mempermudah mapping wilayah</p>
             </a>
-            <a href="/familias" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-blue-900 dark:border-gray-700 dark:hover:bg-gray-700">
+            <a href="/familias" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-primary dark:border-gray-700 dark:hover:bg-gray-700">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Familia List</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Kumpulan data jenis atau famili hewan yang sudah terkumpul di komunitas untuk mempermudah mapping familia hewan</p>
+                <p class="font-normal text-gray-700 dark:text-gray-200">Kumpulan data jenis atau famili hewan yang sudah terkumpul di komunitas untuk mempermudah mapping familia hewan</p>
             </a>
 
             <!-- @forelse ($pets as $pet)
