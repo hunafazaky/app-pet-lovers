@@ -13,10 +13,10 @@
          </div>
          <div class="form-control">
              <label class="label">
-                 <span class="label-text">Email</span>
+                 <span class="label-text">Phone Number</span>
              </label>
-             <input wire:model="email" type="text" placeholder="Email" class="input @error('email') input-error @enderror input-bordered">
-             @error('email')
+             <input wire:model="phone_number" type="text" placeholder="Phone Number" class="input @error('phone_number') input-error @enderror input-bordered">
+             @error('phone_number')
              <label class="label">
                  <span class="label-text-alt">{{ $message }}</span>
              </label>
@@ -52,10 +52,10 @@
          </div>
          <div class="form-control">
              <label class="label">
-                 <span class="label-text">Phone Number</span>
+                 <span class="label-text">Email</span>
              </label>
-             <input wire:model="phone_number" type="text" placeholder="Phone Number" class="input @error('phone_number') input-error @enderror input-bordered">
-             @error('phone_number')
+             <input wire:model="email" type="text" placeholder="Email" class="input @error('email') input-error @enderror input-bordered">
+             @error('email')
              <label class="label">
                  <span class="label-text-alt">{{ $message }}</span>
              </label>

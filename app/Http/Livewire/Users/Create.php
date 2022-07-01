@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
+use App\Models\Region;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,7 +16,9 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.users.create');
+        return view('livewire.users.create', [
+            'regions' => Region::all(),
+        ]);
     }
 
     public function store()

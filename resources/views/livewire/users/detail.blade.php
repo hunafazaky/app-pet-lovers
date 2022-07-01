@@ -10,8 +10,8 @@
             <tbody>
                 <tr class="p-2">
                     <td rowspan="6">
-                        <div class="w-40 h-40">
-                            <img class="w-full h-full object-cover" src="{{ asset('storage/' . $photoOld) }}">
+                        <div class="w-40 h-40 m-auto">
+                            <img class="w-full h-full object-scale-down" src="{{ asset('storage/' . $photoOld) }}">
                         </div>
                     </td>
                     <td class="text-sm align-baseline font-semibold uppercase">User ID</td>

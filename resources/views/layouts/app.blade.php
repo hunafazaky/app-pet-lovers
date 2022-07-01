@@ -15,10 +15,11 @@
         <nav class="bg-white py-4 border-b border-gray-100">
             <div class="container px-8 mx-auto">
                 <a class="text-gray-800 uppercase tracking-wider text-xl font-bold" href="#"><span class="font-black text-primary">Pet</span>Lovers</a>
-                <a class="text-gray-800 font-bold mx-5" href="/">Daftar Mahasiswa</a>
-                <a class="text-gray-800 font-bold mx-5" href="/users">Daftar Pengguna</a>
-                <a class="text-gray-800 font-bold mx-5" href="/">Hewan Peliharaan</a>
-                <a class="text-gray-800 font-bold mx-5" href="/regions">Daftar Region</a>
+                <a class="text-gray-800 font-bold mx-5" href="/">Home</a>
+                <a class="text-gray-800 font-bold mx-5" href="/users">USER</a>
+                <a class="text-gray-800 font-bold mx-5" href="/pets">PET</a>
+                <a class="text-gray-800 font-bold mx-5" href="/familias">FAMILIA</a>
+                <a class="text-gray-800 font-bold mx-5" href="/regions">REGION</a>
             </div>
             <div class="container px-8 mx-auto">
             </div>

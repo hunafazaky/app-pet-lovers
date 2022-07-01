@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Regions;
 
+use App\Models\User;
 use App\Models\Region;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -28,7 +29,8 @@ class Index extends Component
             'regions' => $this->search
                 ? Region::where('name', 'like', '%' . $this->search . '%')
                 ->latest()->paginate($this->paginate)
-                : Region::latest()->paginate($this->paginate)
+                : Region::latest()->paginate($this->paginate),
+            'users' => User::All()
         ]);
     }
 
