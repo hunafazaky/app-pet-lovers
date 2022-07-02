@@ -13,38 +13,16 @@
         </div>
         <div class="form-control">
             <label class="label">
-                <span class="label-text">Phone Number</span>
+                <span class="label-text">Familia</span>
             </label>
-            <input wire:model="phone_number" type="text" placeholder="Phone Number" class="input @error('phone_number') input-error @enderror input-bordered">
-            @error('phone_number')
-            <label class="label">
-                <span class="label-text-alt">{{ $message }}</span>
-            </label>
-            @enderror
-        </div>
-        <div class="form-control">
-            <label class="label">
-                <span class="label-text">Address</span>
-            </label>
-            <input wire:model="address" type="text" placeholder="Address" class="input @error('address') input-error @enderror input-bordered">
-            @error('address')
-            <label class="label">
-                <span class="label-text-alt">{{ $message }}</span>
-            </label>
-            @enderror
-        </div>
-        <div class="form-control">
-            <label class="label">
-                <span class="label-text">Region</span>
-            </label>
-            <select name="id_region" wire:model="id_region" class="input @error('id_region') input-error @enderror input-bordered">
-                @forelse($regions as $region)
-                <option value="{{$region->id}}" <?= $region->id == $id_region ? 'selected' : '' ?>>{{$region->name}}</option>
+            <select name="id_familia" wire:model="id_familia" class="input @error('id_familia') input-error @enderror input-bordered">
+                @forelse($familias as $familia)
+                <option value="{{$familia->id}}" <?= $familia->id == $id_familia ? 'selected' : '' ?>>{{$familia->name}}</option>
                 @empty
                 <option>Not Found</option>
                 @endforelse
             </select>
-            @error('id_region')
+            @error('id_familia')
             <label class="label">
                 <span class="label-text-alt">{{ $message }}</span>
             </label>
@@ -52,10 +30,16 @@
         </div>
         <div class="form-control">
             <label class="label">
-                <span class="label-text">Email</span>
+                <span class="label-text">Owner</span>
             </label>
-            <input wire:model="email" type="text" placeholder="Email" class="input @error('email') input-error @enderror input-bordered">
-            @error('email')
+            <select name="id_owner" wire:model="id_owner" class="input @error('id_owner') input-error @enderror input-bordered">
+                @forelse($users as $user)
+                <option value="{{$user->id}}" <?= $user->id == $id_owner ? 'selected' : '' ?>>{{$user->name}}</option>
+                @empty
+                <option>Not Found</option>
+                @endforelse
+            </select>
+            @error('id_owner')
             <label class="label">
                 <span class="label-text-alt">{{ $message }}</span>
             </label>
@@ -63,10 +47,29 @@
         </div>
         <div class="form-control">
             <label class="label">
-                <span class="label-text">Password</span>
+                <span class="label-text">Donor</span>
             </label>
-            <input wire:model="password" type="text" placeholder="Password" class="input @error('password') input-error @enderror input-bordered">
-            @error('password')
+            <select name="id_donor" wire:model="id_donor" class="input @error('id_donor') input-error @enderror input-bordered">
+                @forelse($users as $user)
+                <option value="{{$user->id}}" <?= $user->id == $id_donor ? 'selected' : '' ?>>{{$user->name}}</option>
+                @empty
+                <option>Not Found</option>
+                @endforelse
+            </select>
+            @error('id_donor')
+            <label class="label">
+                <span class="label-text-alt">{{ $message }}</span>
+            </label>
+            @enderror
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Description</span>
+            </label>
+            <textarea wire:model="description" rows="10" maxlength="400" class="input @error('description') input-error @enderror input-bordered">
+            {{ $description }}
+            </textarea>
+            @error('description')
             <label class="label">
                 <span class="label-text-alt">{{ $message }}</span>
             </label>
@@ -75,7 +78,7 @@
     </div>
     <div class="space-y-2">
         <div class="flex items-center gap-2">
-            {{-- Jika user upload foto, maka ubah previewnya jadi foto yang di upload --}}
+            {{-- Jika pet upload foto, maka ubah previewnya jadi foto yang di upload --}}
             @if ($photo)
             <div class="avatar">
                 <div class="w-24 h-24 mask mask-hexagon">
