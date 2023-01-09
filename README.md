@@ -1,7 +1,3 @@
-[![YouTube Video](https://i.ibb.co/5L4psMK/CRUD-Search-Sederhana-Menggunakan-Laravel-9-dan-Livewire-2.png)](https://youtu.be/hUmjgwyeZm0)
-
-## Clone
-
 1.Clone
 
 ```bash
