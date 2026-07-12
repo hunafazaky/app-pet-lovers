@@ -8,4 +8,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
 });
 
+Route::get('/halo', function () {
+        return view('halo');
+    })->name('halo');
+
 require __DIR__.'/settings.php';
