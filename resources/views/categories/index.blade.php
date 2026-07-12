@@ -22,7 +22,7 @@
                     <div class="flex gap-2">
                         <input type="text" name="name" id="name" value="{{ old('name') }}"
                             class="p-2 w-full border border-white rounded shadow-sm sm:text-sm"
-                            placeholder="Example: Cilegon">
+                            placeholder="Example: Cat">
                         <button type="submit"
                             class="bg-green-600 hover:bg-green-800 text-white font-bold px-4 py-2 rounded">
                             Save
