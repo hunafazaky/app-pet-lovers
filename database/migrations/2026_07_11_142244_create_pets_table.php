@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('photo')->nullable();
             $table->integer('age')->unsigned();
             $table->enum('gender', ['Male', 'Female'])->default('Male');
             $table->enum('condition', ['Healthy', 'Sick'])->default('Healthy');
             $table->text('bio')->nullable();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
