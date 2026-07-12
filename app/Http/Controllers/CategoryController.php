@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use App\Models\Post;
+use App\Models\Category;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +13,10 @@ class PostController extends Controller
     public function index()
     {
         //
+        $categories = Category::latest('created_at')->get();
+
+        // Kirim data ke file view bernama index.blade.php di dalam folder views/locations
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -24,34 +27,20 @@ class PostController extends Controller
         //
     }
 
-    /**
+    /** 
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         //
         $request->validate([
-            'title' => 'nullable|string|max:255',
-            'content' => 'required|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'pet_id' => 'nullable|exists:pets,id',
+            'name' => 'required|string|unique:categories,name|max:255',
         ]);
 
-        $pathPhoto = null;
-
-        if ($request->hasFile('photo')) {
-            $pathPhoto = $request->file('photo')->store('posts', 'public');
-        }
-
-        Post::create([
-            'user_id' => $request->user()?->getKey(),
-            'title' => $request->input('title', ''),
-            'content' => $request->input('content'),
-            'pet_id' => $request->input('pet_id'),
-            'photo' => $pathPhoto,
+        Category::create([
+            'name' => $request->name,
         ]);
-
-        return redirect()->route('dashboard')->with('success', 'Postingan berhasil dibuat!');
+        return redirect()->back()->with('success', 'Jenis peliharaan berhasil ditambahkan!');
     }
 
     /**
