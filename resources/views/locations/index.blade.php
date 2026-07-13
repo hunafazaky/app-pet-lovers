@@ -1,10 +1,4 @@
 <x-layouts::app>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Manajemen Lokasi') }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
@@ -14,35 +8,16 @@
                 </div>
             @endif
 
-            <div class="p-4 sm:p-8 shadow sm:rounded-lg">
-                <h3 class="text-lg font-medium mb-4">Register New Location</h3>
-                <form action="{{ route('locations.store') }}" method="POST" class="flex flex-col gap-2">
-                    @csrf
-                    <label for="name" class="text-sm font-medium">Location Name</label>
-                    <div class="flex gap-2">
-                        <input type="text" name="name" id="name" value="{{ old('name') }}"
-                            class="p-2 w-full border border-white rounded shadow-sm sm:text-sm"
-                            placeholder="Example: Cilegon">
-                        <button type="submit"
-                            class="bg-green-600 hover:bg-green-800 text-white font-bold px-4 py-2 rounded">
-                            Save
-                        </button>
-                    </div>
-                    @error('name')
-                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                    @enderror
-                </form>
-            </div>
+            <a class="text-green-600" href="{{ route('locations.create') }}">Create New Location</a>
 
             <div class="p-4 sm:p-8 shadow sm:rounded-lg">
                 <h3 class="text-lg font-medium mb-4">Registered Location</h3>
                 <table class="w-full table-fixed border-collapse border text-left text-sm">
                     <thead>
                         <tr class="bg-indigo-800">
-                            <th class="w-1/3 p-3 border">Location Name</th>
-                            <th class="w-20 p-3 border">Index</th>
+                            <th class="w-1/2 p-3 border">Location Name</th>
                             <th class="w-1/4 p-3 border">Created At</th>
-                            <th class="w-40 p-3 border">Action</th>
+                            <th class="w-1/4 p-3 border">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,11 +26,10 @@
                                 <td class="p-3 border">
                                     <span class="block truncate">{{ $location->name }}</span>
                                 </td>
-                                <td class="p-3 border">{{ $location->id }}</td>
                                 <td class="p-3 border">{{ $location->created_at->format('d M Y H:i') }}
                                 </td>
                                 <td class="p-3 border flex">
-                                    <button
+                                    <a href="{{ route('locations.edit', $location->id) }}"
                                         class="text-amber-400 hover:text-amber-300 flex items-center gap-1 font-bold text-xs m-1 cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4">
@@ -65,25 +39,31 @@
                                                 d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
                                         </svg>
                                         EDIT
-                                    </button>
-                                    <button
-                                        class="text-amber-700 hover:text-amber-600 flex items-center justify-center gap-1 font-bold text-xs m-1 cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="size-4">
-                                            <path fill-rule="evenodd"
-                                                d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        <span>
+                                    </a>
+                                    <form action="{{ route('locations.destroy', $location->id) }}" method="POST"
+                                        onsubmit="return confirm('Delete this location data?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" icon="heart"
+                                            class="text-amber-700 hover:text-amber-600 flex items-center justify-center gap-1 font-bold text-xs m-1 cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-4">
+                                                <path
+                                                    d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Z" />
+                                                <path fill-rule="evenodd"
+                                                    d="m3.087 9 .54 9.176A3 3 0 0 0 6.62 21h10.757a3 3 0 0 0 2.995-2.824L20.913 9H3.087Zm6.133 2.845a.75.75 0 0 1 1.06 0l1.72 1.72 1.72-1.72a.75.75 0 1 1 1.06 1.06l-1.72 1.72 1.72 1.72a.75.75 0 1 1-1.06 1.06L12 15.685l-1.72 1.72a.75.75 0 1 1-1.06-1.06l1.72-1.72-1.72-1.72a.75.75 0 0 1 0-1.06Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
                                             DELETE
-                                        </span>
-                                    </button>
+                                        </button>
+                                    </form>
                                 </td>
 
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="px-6 py-4 whitespace-nowrap text-sm text-center">There's no registered location yet</td>
+                                <td colspan="4" class="px-6 py-4 whitespace-nowrap text-sm text-center">There's no
+                                    registered location yet</td>
                             </tr>
                         @endforelse
                     </tbody>
