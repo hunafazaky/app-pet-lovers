@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Models\Location;
 
 class LocationController extends Controller
 {
@@ -12,10 +12,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
         $locations = Location::latest('created_at')->get();
-
-        // Kirim data ke file view bernama index.blade.php di dalam folder views/locations
         return view('locations.index', compact('locations'));
     }
 
@@ -24,10 +21,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
         $locations = Location::latest('created_at')->get();
-
-        // Kirim data ke file view bernama index.blade.php di dalam folder views/locations
         return view('locations.create', compact('locations'));
     }
 
@@ -36,15 +30,9 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
-            'name' => 'required|string|unique:locations,name|max:255',
-        ]);
-
-        Location::create([
-            'name' => $request->name,
-        ]);
-
+        $request->validate(['name' => 'required|string|unique:locations,name|max:255']);
+        Location::create(['name' => $request->name]);
+        
         return redirect()->route('locations.index')->with('success', 'New Location Registered');
     }
 
@@ -62,7 +50,6 @@ class LocationController extends Controller
     public function edit(string $id)
     {
         $location = Location::findOrFail($id);
-
         return view('locations.edit', compact('location'));
     }
 
@@ -71,11 +58,9 @@ class LocationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'name' => 'required|string|unique:locations,name|max:255',
-        ]);
-
+        $request->validate(['name' => 'required|string|unique:locations,name|max:255']);
         Location::findOrFail($id)->update(['name' => $request->name]);
+
         return redirect()->route('locations.index')->with('success', 'Location Data Updated');
     }
 
