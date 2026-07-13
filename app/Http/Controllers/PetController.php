@@ -16,7 +16,7 @@ class PetController extends Controller
     public function index()
     {
         //
-        $pets = Pet::with('category')->where('user_id', Auth::id())->latest()->get();
+        $pets = Pet::with('category', 'user')->where('user_id', Auth::id())->latest()->get();
         
         // Ambil semua kategori untuk pilihan di Dropdown Form
         $categories = Category::all();
