@@ -12,10 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
         $categories = Category::latest('created_at')->get();
-
-        // Kirim data ke file view bernama index.blade.php di dalam folder views/locations
         return view('categories.index', compact('categories'));
     }
 
@@ -24,7 +21,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::latest('created_at')->get();
+        return view('categories.create', compact('categories'));
     }
 
     /** 
@@ -32,15 +30,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
-            'name' => 'required|string|unique:categories,name|max:255',
-        ]);
+        $request->validate(['name' => 'required|string|unique:categories,name|max:255']);
+        Category::create(['name' => $request->name]);
 
-        Category::create([
-            'name' => $request->name,
-        ]);
-        return redirect()->back()->with('success', 'Jenis peliharaan berhasil ditambahkan!');
+        return redirect()->route('categories.index')->with('success', 'New Category Registered');
     }
 
     /**
@@ -56,7 +49,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -64,7 +58,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(['name' => 'required|string|unique:categories,name|max:255']);
+        Category::findOrFail($id)->update(['name' => $request->name]);
+
+        return redirect()->route('categories.index')->with('success', 'Category Data Updated');
     }
 
     /**
@@ -72,6 +69,7 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Category::findOrFail($id)->delete();
+        return redirect()->route('categories.index')->with('success', 'Category Data Deleted');
     }
 }
