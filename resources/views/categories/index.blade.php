@@ -83,7 +83,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="px-6 py-4 whitespace-nowrap text-sm text-center">There's no registered category yet</td>
+                                <td colspan="4" class="px-6 py-4 whitespace-nowrap text-sm text-center">There's no
+                                    registered category yet</td>
                             </tr>
                         @endforelse
                     </tbody>
