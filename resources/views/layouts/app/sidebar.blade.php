@@ -22,7 +22,7 @@
                         {{ __('Categories') }}
                     </flux:sidebar.item>
                     <flux:sidebar.item icon="heart" :href="route('pets.index')" :current="request()->routeIs('pets.index')" wire:navigate>
-                        {{ __('Pets') }}
+                        {{ __('My Pets') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
