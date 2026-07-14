@@ -8,7 +8,7 @@
                 </div>
             @endif
 
-            <a class="text-green-600" href="{{ route('pets.create') }}">Create New Pet</a>
+            <a class="text-green-600" href="{{ route('pets.create') }}">Register New Pet</a>
 
             <div class="p-4 shadow sm:rounded-lg sm:p-8">
                 <h3 class="mb-4 text-lg font-medium">Registered Pet</h3>
@@ -23,7 +23,7 @@
                         </a>
                     @empty
                         <section>
-                            <div class="whitespace-nowrap px-6 py-4 text-center text-sm">There's no
+                            <div class="whitespace-nowrap text-sm opacity-50">There's no
                                 registered pet yet</div>
                         </section>
                     @endforelse

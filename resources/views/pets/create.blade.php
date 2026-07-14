@@ -89,7 +89,7 @@
                     </div>
                     <button type="submit"
                         class="ml-auto w-1/4 rounded bg-green-600 px-4 py-2 font-bold text-white hover:bg-green-800">
-                        Create
+                        Register
                     </button>
                     @if ($errors->any())
                         <div class="rounded border border-red-700 bg-red-500 px-4 py-2 text-sm text-white">
