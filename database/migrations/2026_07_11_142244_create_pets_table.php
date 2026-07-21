@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->integer('age')->unsigned();
             $table->enum('gender', ['Male', 'Female'])->default('Male');
-            $table->enum('condition', ['Healthy', 'Sick'])->default('Healthy');
+            $table->enum('condition', ['Healthy', 'Injured', 'Sick'])->default('Healthy');
             $table->text('bio')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

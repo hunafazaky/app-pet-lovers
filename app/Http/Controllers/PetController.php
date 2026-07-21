@@ -7,13 +7,15 @@ use App\Models\Pet;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class PetController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $pets = Pet::with('category', 'user')->where('user_id', Auth::id())->latest()->get();
         $categories = Category::all();
@@ -24,7 +26,7 @@ class PetController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $pets = Pet::with('category', 'user')->where('user_id', Auth::id())->latest()->get();
         $categories = Category::all();
@@ -35,14 +37,14 @@ class PetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'age' => 'required|integer|min:0',
             'gender' => 'required|in:Male,Female',
-            'condition' => 'required|in:Healthy,Sick',
+            'condition' => 'required|in:Healthy,Sick,Injured',
             'bio' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
         ]);
@@ -69,7 +71,7 @@ class PetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): View
     {
         $pet = Pet::findOrFail($id);
         return view('pets.show', compact('pet'));
@@ -78,7 +80,7 @@ class PetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
         $pet = Pet::findOrFail($id);
         $categories = Category::all();
@@ -89,7 +91,7 @@ class PetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
         $pet = Pet::findOrFail($id);
         $request->validate([
@@ -97,7 +99,7 @@ class PetController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'age' => 'required|integer|min:0',
             'gender' => 'required|in:Male,Female',
-            'condition' => 'required|in:Healthy,Sick',
+            'condition' => 'required|in:Healthy,Sick,Injured',
             'bio' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
         ]);
@@ -126,7 +128,7 @@ class PetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $pet = Pet::findOrFail($id);
 
