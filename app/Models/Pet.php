@@ -16,10 +16,18 @@ class Pet extends Model
 
     // TAMBAHKAN BARIS INI:
     protected $fillable = ['name', 'photo', 'age', 'gender', 'condition', 'bio', 'category_id', 'user_id'];
+
+    /**
+     * @return BelongsTo<Category, $this>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

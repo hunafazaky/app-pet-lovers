@@ -21,8 +21,8 @@ class PetFactory extends Factory
     {
         return [
             'name' => fake()->unique()->firstName(),
-            'category_id' => fn () => Category::inRandomOrder()->first()?->id ?? Category::factory(),
-            'user_id' => fn () => User::inRandomOrder()->first()?->id ?? User::factory(),
+            'category_id' => fn () => Category::inRandomOrder()->first()->id ?? Category::factory(),
+            'user_id' => fn () => User::inRandomOrder()->first()->id ?? User::factory(),
             'photo' => fake()->imageUrl(640, 480, 'animals', true),
             'age' => fake()->numberBetween(1, 150),
             'gender' => fake()->randomElement(['Male', 'Female']),

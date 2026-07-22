@@ -9,7 +9,7 @@ use Database\Factories\PostFactory;
 class Post extends Model
 {
     /** @use HasFactory<PostFactory> */
-    use HasFactory
+    use HasFactory;
 
     protected $fillable = ['user_id', 'pet_id', 'title', 'content', 'photo'];
 }
